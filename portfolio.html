@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vitor Teixeira — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #121212;
+      --surface: #1e1e1e;
+      --surface2: #202020;
+      --surface3: #2a2a2a;
+      --text: #e0e0e0;
+      --text-muted: #9e9e9e;
+      --accent: #4BC0D9;
+      --accent-hover: #5dd0e8;
+      --tag-beginner: #ef9a9a;
+      --tag-beginner-text: #5d4037;
+      --tag-bg: #2a2a2a;
+      --border: #333;
+      --phase-dot: #e91e63;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .top-bar-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .top-bar {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+    .top-bar span + span { margin-left: 1rem; }
+    .top-bar-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .lang-switch span[role="separator"] { color: var(--border); user-select: none; }
+    .lang-switch button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      padding: 0.2rem 0.35rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .lang-switch button:hover { color: var(--text); }
+    .lang-switch button[aria-pressed="true"] {
+      color: var(--accent);
+      background: rgba(75, 192, 217, 0.12);
+    }
+    .lang-switch {
+      display: flex;
+      gap: 0.35rem;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      font-family: inherit;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.65rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface2);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+    .lang-btn:hover {
+      color: var(--text);
+      border-color: var(--accent);
+    }
+    .lang-btn.active {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(75, 192, 217, 0.12);
+    }
+    .phase-item-title {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 0 0 0.75rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+    .hero .author {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    .hero .author svg { width: 16px; height: 16px; opacity: 0.8; }
+    .hero .links {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem 1.25rem;
+      justify-content: center;
+      font-size: 0.875rem;
+    }
+    .hero .links a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .hero .links a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+    .sticky-menu {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      padding: 1rem 0 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.5rem 1.5rem;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+    }
+    .tabs a {
+      color: #E8E8E8;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 0.5rem 0 0.75rem;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tabs a:hover { color: #E8E8E8; opacity: 0.9; }
+    .tabs a.active {
+      color: #E8E8E8;
+      border-bottom-color: #4BC0D9;
+    }
+
+    .intro {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .phase {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      background: var(--surface);
+    }
+    .phase-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s;
+    }
+    .phase-header:hover { background: var(--surface2); }
+    .phase-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--phase-dot);
+      flex-shrink: 0;
+      margin-top: 0.35rem;
+    }
+    .phase-title-wrap { flex: 1; min-width: 0; }
+    .phase-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0 0 0.25rem;
+      color: var(--text);
+    }
+    .phase-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+      line-height: 1.5;
+    }
+    .phase-toggle {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+    }
+    .phase.open .phase-toggle { transform: rotate(180deg); }
+    .phase-body {
+      display: none;
+      padding: 0 1.25rem 1.25rem;
+      padding-left: calc(1.25rem + 10px + 0.75rem);
+    }
+    .phase.open .phase-body { display: block; }
+
+    .phase-item {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+      background: var(--surface2);
+    }
+    .phase-item-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: background 0.2s;
+    }
+    .phase-item-header:hover { background: var(--surface3); }
+    .phase-item-header .chevron {
+      width: 16px;
+      height: 16px;
+      color: var(--text-muted);
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+    .phase-item.open .chevron { transform: rotate(90deg); }
+    .phase-item-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-left: auto;
+    }
+    .tag {
+      font-size: 0.7rem;
+      padding: 0.2em 0.5em;
+      border-radius: 4px;
+      background: var(--tag-bg);
+      color: var(--text-muted);
+    }
+    .tag.highlight {
+      background: rgba(75, 192, 217, 0.2);
+      color: var(--accent);
+    }
+    .phase-item-body {
+      display: none;
+      padding: 0 1rem 1rem;
+      padding-left: calc(1rem + 16px + 0.5rem);
+      border-top: 1px solid var(--border);
+    }
+    .phase-item.open .phase-item-body { display: block; }
+
+    .phase-item-body h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 1rem 0 0.5rem;
+      font-weight: 600;
+    }
+    .phase-item-body h4:first-child { margin-top: 0; }
+    .phase-item-body p, .phase-item-body ul, .phase-item-body ol {
+      font-size: 0.875rem;
+      color: var(--text);
+      margin: 0.5rem 0;
+      line-height: 1.6;
+    }
+    .phase-item-body ul, .phase-item-body ol { padding-left: 1.25rem; }
+    .phase-item-body li { margin-bottom: 0.35rem; }
+    .phase-item-body code {
+      background: var(--surface3);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.82em;
+      color: var(--accent);
+    }
+    .phase-item-body .highlight { color: var(--accent); font-weight: 600; }
+    .phase-item-body a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .phase-item-body a:hover { text-decoration: underline; }
+
+    .meta-line {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin: 0 0 0.5rem;
+    }
+
+    .footer-credits {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="top-bar">
+      <div class="top-bar-row">
+        <div>
+          <span>QA</span><span>IA / GenAI</span><span>Cypress</span><span>Playwright</span><span>API</span><span>CI/CD</span><span>LLM</span>
+        </div>
+        <div class="lang-switch" role="group" data-i18n-aria-group="lang_aria" aria-label="Idioma">
+          <button type="button" data-lang="pt" aria-pressed="true" title="Português">PT</button>
+          <span role="separator" aria-hidden="true">|</span>
+          <button type="button" data-lang="es" aria-pressed="false" title="Español">ES</button>
+          <span role="separator" aria-hidden="true">|</span>
+          <button type="button" data-lang="en" aria-pressed="false" title="English">EN</button>
+        </div>
+      </div>
+    </div>
+
+    <header class="hero">
+      <h1>Vitor Teixeira</h1>
+      <p class="author">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+        <span data-i18n="hero_subtitle">AI Engineer & QA Specialist · São Paulo, SP</span>
+      </p>
+      <div class="links">
+        <a href="mailto:vitateje@gmail.com">vitateje@gmail.com</a>
+        <a href="https://www.linkedin.com/in/vitateje" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/vitateje" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </div>
+    </header>
+
+    <div class="sticky-menu">
+      <nav class="tabs" aria-label="Seções" data-i18n-aria="nav_aria">
+        <a href="#sobre" class="active" data-i18n="nav_sobre">Sobre</a>
+        <a href="#experiencia" data-i18n="nav_exp">Experiência</a>
+        <a href="#formacao" data-i18n="nav_form">Formação</a>
+        <a href="#skills" data-i18n="nav_skills">Skills</a>
+        <a href="#projetos" data-i18n="nav_proj">Projetos</a>
+      </nav>
+    </div>
+
+    <p class="intro" data-i18n="intro">
+      QA sênior com forte atuação em automação E2E e API (Cypress, Playwright, TypeScript/JavaScript), integração em CI/CD e evolução para produtos de IA: LLMs, agentes, RAG e engenharia de prompts. Experiência em squads internacionais e fintech.
+    </p>
+
+    <div class="phase open" id="sobre" data-phase="1">
+      <div class="phase-header" aria-expanded="true">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_sobre_title">Sobre</h2>
+          <p class="phase-desc" data-i18n="ph_sobre_desc">Foco profissional</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item open">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="sobre_resumo_h">Resumo</span>
+            <span class="phase-item-tags"><span class="tag" data-i18n="tag_perfil">Perfil</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p data-i18n="sobre_p2">Profissional com trajetória sólida em qualidade de software, automação de testes e liderança técnica em QA, atualmente aprofundando IA aplicada (RAG, LangChain, fine-tuning, pipelines em nuvem).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="experiencia" data-phase="2">
+      <div class="phase-header" aria-expanded="false">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_exp_title">Experiência profissional</h2>
+          <p class="phase-desc" data-i18n="ph_exp_desc">Empresas, projetos e principais entregas.</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_blue_title">Senior QA Engineer — BlueMetrics</span>
+            <span class="phase-item-tags"><span class="tag highlight" data-i18n="tag_atual">Atual</span><span class="tag">IA</span><span class="tag">Cypress</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_blue_meta">Ago 2025 — Presente · Projeto LobbyCRE (EUA)</p>
+            <ul>
+              <li data-i18n="exp_blue_1">Liderança de QA para produtos de IA voltados ao mercado imobiliário (Lobby AI).</li>
+              <li data-i18n="exp_blue_2">Automação inteligente com foco em LLMs e agentes de IA.</li>
+              <li data-i18n="exp_blue_3">Prompt engineering para cenários de teste e validação da precisão das respostas dos modelos.</li>
+              <li data-i18n="exp_blue_4">Automação E2E com Cypress e JavaScript.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_enc_title">QA Specialist — Encora</span>
+            <span class="phase-item-tags"><span class="tag">Playwright</span><span class="tag">API</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_enc_meta">Jun 2024 — Abr 2025 · Projeto Mindbloom (EUA)</p>
+            <ul>
+              <li data-i18n="exp_enc_1">Contribuição para a qualidade da aplicação em projeto internacional.</li>
+              <li data-i18n="exp_enc_2">Automação E2E e de API com JavaScript e Playwright.</li>
+              <li data-i18n="exp_enc_3">Cenários de teste, identificação e reporte de bugs.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_dex_title">Senior QA Engineer — Dexian</span>
+            <span class="phase-item-tags"><span class="tag">Playwright</span><span class="tag">GitLab CI</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_dex_meta">Abr 2023 — Mai 2024 · Pizza Hut (EUA)</p>
+            <ul>
+              <li data-i18n="exp_dex_1">Liderança de QA com foco em performance e experiência do usuário.</li>
+              <li data-i18n="exp_dex_2">Automação E2E e API com Playwright, Cypress e TypeScript.</li>
+              <li data-i18n="exp_dex_3">Planos de teste, acompanhamento e reporte detalhado de defeitos.</li>
+              <li data-i18n="exp_dex_4">Migração do projeto de testes para Cypress, JavaScript e integração com GitLab CI.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_fs_title">Senior QA Engineer — FullstackLabs</span>
+            <span class="phase-item-tags"><span class="tag">Cypress</span><span class="tag">TypeScript</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_fs_meta">Ago 2022 — Mar 2023 · LWT Learning Without Tears (EUA)</p>
+            <ul>
+              <li data-i18n="exp_fs_1">Scripts de automação E2E e API com Cypress e TypeScript.</li>
+              <li data-i18n="exp_fs_2">Mentoria a QAs júnior e boas práticas de teste.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_sol_title">Analista de Qualidade de Software — Solfacil Fintech</span>
+            <span class="phase-item-tags"><span class="tag">Cypress</span><span class="tag">POM</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_sol_meta">Abr 2021 — Ago 2022 · São Paulo</p>
+            <ul>
+              <li data-i18n="exp_sol_1">Squads comercial e engenharia; ciclo completo de testes.</li>
+              <li data-i18n="exp_sol_2">Planos, casos, reporte e acompanhamento de defeitos.</li>
+              <li data-i18n="exp_sol_3">Mentoria a QAs júnior.</li>
+              <li data-i18n="exp_sol_4">Liderança da automação E2E e API com POM, Cypress e JavaScript.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_acre_title">Analista de Qualidade de Software — ACRELEC</span>
+            <span class="phase-item-tags"><span class="tag">Ruby</span><span class="tag">Capybara</span><span class="tag">Cucumber</span><span class="tag">Pytest</span><span class="tag">Jira</span><span class="tag">X-Ray</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_acre_meta">Set 2020 — Mar 2021 · 7 meses</p>
+            <ul>
+              <li data-i18n="exp_acre_1">Criação e execução de cenários de teste; identificação de problemas e falhas com reporte às equipes de desenvolvimento.</li>
+              <li data-i18n="exp_acre_2">Atuação com equipes multifuncionais e multidisciplinares para garantir a qualidade ao longo do ciclo de vida do software.</li>
+              <li data-i18n="exp_acre_3">Desenvolvimento e execução de testes automatizados de aplicações web (Ruby, Capybara, Cucumber) e de API (Pytest, HTTParty).</li>
+              <li data-i18n="exp_acre_4">Reporte com Jira e plugin X-Ray.</li>
+              <li data-i18n="exp_acre_5">Projetos: Taco Bell UK, McDonald's US, Acrelec Audio, POS (ponto de venda).</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="exp_rgpi_title">Desenvolvedor de Software — RGPI Web</span>
+            <span class="phase-item-tags"><span class="tag" data-i18n="tag_contract">Contrato</span><span class="tag">Node.js</span><span class="tag">PostgreSQL</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p class="meta-line" data-i18n="exp_rgpi_meta">Jul 2018 — Ago 2020 · 2 anos 2 meses · Remoto</p>
+            <ul>
+              <li data-i18n="exp_rgpi_1">Desenvolvimento e manutenção de APIs RESTful com Node.js e Express.</li>
+              <li data-i18n="exp_rgpi_2">Modelagem de dados e persistência com PostgreSQL e TypeORM.</li>
+              <li data-i18n="exp_rgpi_3">Análise técnica de requisitos e implementação de lógica de negócio.</li>
+              <li data-i18n="exp_rgpi_4">Consultas SQL.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="formacao" data-phase="3">
+      <div class="phase-header" aria-expanded="false">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_form_title">Formação e qualificações</h2>
+          <p class="phase-desc" data-i18n="ph_form_desc">Cursos acadêmicos, extensão e certificações.</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="form_edu_h">Educação formal</span>
+            <span class="phase-item-tags"><span class="tag">FIAP</span><span class="tag">IMPACTA</span></span>
+          </div>
+          <div class="phase-item-body">
+            <ul>
+              <li data-i18n-html="form_edu_1"><strong>Artificial Intelligence for Developers</strong> — FIAP (Jun 2025 — Mar 2026)</li>
+              <li data-i18n-html="form_edu_4"><strong>MBA em Engenharia de Software</strong> — IMPACTA (2022 — incompleto)</li>
+              <li data-i18n-html="form_edu_2"><strong>Análise e Desenvolvimento de Sistemas</strong> — IMPACTA (Ago 2018 — Jul 2020)</li>
+              <li data-i18n-html="form_edu_3"><strong>Administração</strong> — UNIESP (Jan 2006 — Dez 2009)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="form_qual_h">Qualificações e cursos</span>
+            <span class="phase-item-tags"><span class="tag">Alura</span><span class="tag">FIAP</span></span>
+          </div>
+          <div class="phase-item-body">
+            <ul>
+              <li data-i18n="form_q_1">Advanced RAG Techniques with LangChain — Alura</li>
+              <li data-i18n="form_q_2">Orchestrating LLMs with LangChain — Alura</li>
+              <li data-i18n="form_q_3">LangChain: Automating Data Analysis with Agents — Alura</li>
+              <li data-i18n="form_q_4">Llamaindex Chatbot with RAG — Alura</li>
+              <li data-i18n="form_q_5">Fine-Tuning OpenAI — Alura</li>
+              <li data-i18n="form_q_6">AI Pipelines in Cloud: GCP, AWS and Azure — Alura</li>
+              <li data-i18n="form_q_7">Artificial and Computational Intelligence — FIAP</li>
+              <li data-i18n="form_q_8">Node.js — Rocketseat Ignite</li>
+              <li data-i18n="form_q_9">User Experience — FIAP</li>
+              <li data-i18n="form_q_10">Advanced Cypress — Test Automation University</li>
+              <li data-i18n="form_q_11">Automation 180 (WEB and API) — QAninja</li>
+              <li data-i18n="form_q_12">Marketing: Creativity and Innovation — Senac</li>
+              <li data-i18n="form_q_13">Advanced English — CNA</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="skills" data-phase="4">
+      <div class="phase-header" aria-expanded="false">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_skills_title">Competências</h2>
+          <p class="phase-desc" data-i18n="ph_skills_desc">Hard skills técnicas e soft skills.</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="skills_hard_h">Hard skills</span>
+            <span class="phase-item-tags"><span class="tag" data-i18n="tag_stack">Stack</span></span>
+          </div>
+          <div class="phase-item-body">
+            <ul>
+              <li data-i18n-html="skills_1"><strong>Linguagens:</strong> Python, JavaScript, TypeScript</li>
+              <li data-i18n-html="skills_2"><strong>IA / ML:</strong> Prompt Engineering, NLP, Fine-tuning, RAG, LlamaIndex, Ollama</li>
+              <li data-i18n-html="skills_3"><strong>Ferramentas de IA:</strong> LangChain, OpenAI, Gemini, Google ADK, ChatGPT, Cursor</li>
+              <li data-i18n-html="skills_4"><strong>Dados / ML:</strong> Scikit-learn, Pandas, Matplotlib, Seaborn</li>
+              <li data-i18n-html="skills_5"><strong>Testes / APIs:</strong> Cypress, Playwright, Pytest, Cucumber, Postman, Vue, Express</li>
+              <li data-i18n-html="skills_6"><strong>DevOps / CI/CD:</strong> Jenkins, GitLab CI, Git, GitHub</li>
+              <li data-i18n-html="skills_7"><strong>Cloud / Infra:</strong> Hugging Face, AWS, Docker</li>
+              <li data-i18n-html="skills_8"><strong>Bancos:</strong> PostgreSQL, SQL, ORM, MongoDB, Pinecone</li>
+              <li data-i18n-html="skills_9"><strong>Observabilidade / Gestão:</strong> Jira, Xray, TestRail, Kibana, Grafana, Datadog, BrowserStack</li>
+              <li data-i18n-html="skills_10"><strong>Padrões:</strong> OOP, POM, DRY</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="skills_soft_h">Soft skills</span>
+            <span class="phase-item-tags"><span class="tag" data-i18n="tag_perfil2">Perfil</span></span>
+          </div>
+          <div class="phase-item-body">
+            <ul>
+              <li data-i18n="soft_1">Forte capacidade analítica e atenção a detalhes</li>
+              <li data-i18n="soft_2">Proatividade, organização e aprendizado rápido</li>
+              <li data-i18n="soft_3">Habilidade em compartilhar e disseminar conhecimento com o time</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="projetos" data-phase="5">
+      <div class="phase-header" aria-expanded="false">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_proj_title">Projetos de IA</h2>
+          <p class="phase-desc" data-i18n="ph_proj_desc">Links para demos e experimentos publicados.</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_chem_title">Chemistry Agent (LLM, RAG, Fine-Tuning)</span>
+            <span class="phase-item-tags"><span class="tag">RAG</span><span class="tag">LLM</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p><a href="https://quimicai.vercel.app/" target="_blank" rel="noopener noreferrer" data-i18n="proj_chem_link">quimicai.vercel.app</a></p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_medical_title">Assistente médico virtual — ChatML, RAG e multimodal LM</span>
+            <span class="phase-item-tags"><span class="tag">fine tuning</span><span class="tag">ChatML</span><span class="tag">RAG</span><span class="tag">multimodal LM</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p><a href="https://medical-virtual-assistant.vercel.app/" target="_blank" rel="noopener noreferrer" data-i18n="proj_medical_link">medical-virtual-assistant.vercel.app</a></p>
+            <p class="meta-line" data-i18n="proj_medical_note">Fine-tuning ChatML, RAG e modelo de linguagem multimodal para assistência contextualizada.</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_mlga_title">Otimização de ML com algoritmos genéticos (diabetes)</span>
+            <span class="phase-item-tags"><span class="tag">machine learning</span><span class="tag" data-i18n="tag_genetic">algoritmos genéticos</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p><a href="https://github.com/vitateje/tech_challenge_fase_2/blob/main/diabetes_otimizado.ipynb" target="_blank" rel="noopener noreferrer" data-i18n="proj_mlga_link">Notebook — diabetes_otimizado.ipynb (GitHub)</a></p>
+            <p class="meta-line" data-i18n="proj_mlga_note">Busca de hiperparâmetros e otimização de modelo com abordagem evolutiva (scikit-learn).</p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_hf_diab_title">Machine Learning — Predição de diabetes</span>
+            <span class="phase-item-tags"><span class="tag">Hugging Face</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p><a href="https://huggingface.co/spaces/vitateje/Diabets" target="_blank" rel="noopener noreferrer" data-i18n="proj_hf_diab_link">Hugging Face — Diabets</a></p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_pneu_title">Deep Learning — Diagnóstico de pneumonia</span>
+            <span class="phase-item-tags"><span class="tag">Hugging Face</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p><a href="https://huggingface.co/spaces/vitateje/Pneumonia" target="_blank" rel="noopener noreferrer" data-i18n="proj_pneu_link">Hugging Face — Pneumonia</a></p>
+          </div>
+        </div>
+        <div class="phase-item">
+          <div class="phase-item-header">
+            <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+            <span data-i18n="proj_poc_title">POC — agente de teste para IA (LLM como validador)</span>
+            <span class="phase-item-tags"><span class="tag">LLM as validator</span><span class="tag">QA</span><span class="tag">IA</span></span>
+          </div>
+          <div class="phase-item-body">
+            <p data-i18n="proj_poc_note">Menção: prova de conceito explorando LLM como validador em fluxos de teste assistido por IA (sem link público).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-credits" aria-hidden="true" data-i18n="footer">
+    Vitor Teixeira — Portfolio
+  </div>
+
+  <script>
+    (function() {
+      var STRINGS = {
+        pt: {
+          doc_title: 'Vitor Teixeira — Portfolio',
+          lang_aria: 'Idioma',
+          hero_subtitle: 'AI Engineer & QA Specialist · São Paulo, SP',
+          nav_aria: 'Seções',
+          nav_sobre: 'Sobre', nav_exp: 'Experiência', nav_form: 'Formação', nav_skills: 'Skills', nav_proj: 'Projetos',
+          intro: 'QA sênior com forte atuação em automação E2E e API (Cypress, Playwright, TypeScript/JavaScript), integração em CI/CD e evolução para produtos de IA: LLMs, agentes, RAG e engenharia de prompts. Experiência em squads internacionais e fintech.',
+          ph_sobre_title: 'Sobre', ph_sobre_desc: 'Foco profissional',
+          sobre_resumo_h: 'Resumo', tag_perfil: 'Perfil',
+          sobre_p2: 'Profissional com trajetória sólida em qualidade de software, automação de testes e liderança técnica em QA, atualmente aprofundando IA aplicada (RAG, LangChain, fine-tuning, pipelines em nuvem).',
+          ph_exp_title: 'Experiência profissional', ph_exp_desc: 'Empresas, projetos e principais entregas.',
+          exp_blue_title: 'Senior QA Engineer — BlueMetrics', tag_atual: 'Atual',
+          exp_blue_meta: 'Ago 2025 — Presente · Projeto LobbyCRE (EUA)',
+          exp_blue_1: 'Liderança de QA para produtos de IA voltados ao mercado imobiliário (Lobby AI).',
+          exp_blue_2: 'Automação inteligente com foco em LLMs e agentes de IA.',
+          exp_blue_3: 'Prompt engineering para cenários de teste e validação da precisão das respostas dos modelos.',
+          exp_blue_4: 'Automação E2E com Cypress e JavaScript.',
+          exp_enc_title: 'QA Specialist — Encora', exp_enc_meta: 'Jun 2024 — Abr 2025 · Projeto Mindbloom (EUA)',
+          exp_enc_1: 'Contribuição para a qualidade da aplicação em projeto internacional.',
+          exp_enc_2: 'Automação E2E e de API com JavaScript e Playwright.',
+          exp_enc_3: 'Cenários de teste, identificação e reporte de bugs.',
+          exp_dex_title: 'Senior QA Engineer — Dexian', exp_dex_meta: 'Abr 2023 — Mai 2024 · Pizza Hut (EUA)',
+          exp_dex_1: 'Liderança de QA com foco em performance e experiência do usuário.',
+          exp_dex_2: 'Automação E2E e API com Playwright, Cypress e TypeScript.',
+          exp_dex_3: 'Planos de teste, acompanhamento e reporte detalhado de defeitos.',
+          exp_dex_4: 'Migração do projeto de testes para Cypress, JavaScript e integração com GitLab CI.',
+          exp_fs_title: 'Senior QA Engineer — FullstackLabs', exp_fs_meta: 'Ago 2022 — Mar 2023 · LWT Learning Without Tears (EUA)',
+          exp_fs_1: 'Scripts de automação E2E e API com Cypress e TypeScript.',
+          exp_fs_2: 'Mentoria a QAs júnior e boas práticas de teste.',
+          exp_sol_title: 'Analista de Qualidade de Software — Solfacil Fintech', exp_sol_meta: 'Abr 2021 — Ago 2022 · São Paulo',
+          exp_sol_1: 'Squads comercial e engenharia; ciclo completo de testes.',
+          exp_sol_2: 'Planos, casos, reporte e acompanhamento de defeitos.',
+          exp_sol_3: 'Mentoria a QAs júnior.',
+          exp_sol_4: 'Liderança da automação E2E e API com POM, Cypress e JavaScript.',
+          exp_acre_title: 'Analista de Qualidade de Software — ACRELEC',
+          exp_acre_meta: 'Set 2020 — Mar 2021 · 7 meses',
+          exp_acre_1: 'Criação e execução de cenários de teste; identificação de problemas e falhas com reporte às equipes de desenvolvimento.',
+          exp_acre_2: 'Atuação com equipes multifuncionais e multidisciplinares para garantir a qualidade ao longo do ciclo de vida do software.',
+          exp_acre_3: 'Desenvolvimento e execução de testes automatizados de aplicações web (Ruby, Capybara, Cucumber) e de API (Pytest, HTTParty).',
+          exp_acre_4: 'Reporte com Jira e plugin X-Ray.',
+          exp_acre_5: 'Projetos: Taco Bell UK, McDonald\'s US, Acrelec Audio, POS (ponto de venda).',
+          exp_rgpi_title: 'Desenvolvedor de Software — RGPI Web', tag_contract: 'Contrato',
+          exp_rgpi_meta: 'Jul 2018 — Ago 2020 · 2 anos 2 meses · Remoto',
+          exp_rgpi_1: 'Desenvolvimento e manutenção de APIs RESTful com Node.js e Express.',
+          exp_rgpi_2: 'Modelagem de dados e persistência com PostgreSQL e TypeORM.',
+          exp_rgpi_3: 'Análise técnica de requisitos e implementação de lógica de negócio.',
+          exp_rgpi_4: 'Consultas SQL.',
+          ph_form_title: 'Formação e qualificações', ph_form_desc: 'Cursos acadêmicos, extensão e certificações.',
+          form_edu_h: 'Educação formal',
+          form_edu_1: '<strong>Artificial Intelligence for Developers</strong> — FIAP (Jun 2025 — Mar 2026)',
+          form_edu_4: '<strong>MBA em Engenharia de Software</strong> — IMPACTA (2022 — incompleto)',
+          form_edu_2: '<strong>Análise e Desenvolvimento de Sistemas</strong> — IMPACTA (Ago 2018 — Jul 2020)',
+          form_edu_3: '<strong>Administração</strong> — UNIESP (Jan 2006 — Dez 2009)',
+          form_qual_h: 'Qualificações e cursos',
+          form_q_1: 'Advanced RAG Techniques with LangChain — Alura', form_q_2: 'Orchestrating LLMs with LangChain — Alura',
+          form_q_3: 'LangChain: Automating Data Analysis with Agents — Alura', form_q_4: 'Llamaindex Chatbot with RAG — Alura',
+          form_q_5: 'Fine-Tuning OpenAI — Alura', form_q_6: 'AI Pipelines in Cloud: GCP, AWS and Azure — Alura',
+          form_q_7: 'Artificial and Computational Intelligence — FIAP', form_q_8: 'Node.js — Rocketseat Ignite',
+          form_q_9: 'User Experience — FIAP', form_q_10: 'Advanced Cypress — Test Automation University',
+          form_q_11: 'Automation 180 (WEB and API) — QAninja', form_q_12: 'Marketing: Creativity and Innovation — Senac',
+          form_q_13: 'Advanced English — CNA',
+          ph_skills_title: 'Competências', ph_skills_desc: 'Hard skills técnicas e soft skills.',
+          skills_hard_h: 'Hard skills', tag_stack: 'Stack',
+          skills_1: '<strong>Linguagens:</strong> Python, JavaScript, TypeScript',
+          skills_2: '<strong>IA / ML:</strong> Prompt Engineering, NLP, Fine-tuning, RAG, LlamaIndex, Ollama',
+          skills_3: '<strong>Ferramentas de IA:</strong> LangChain, OpenAI, Gemini, Google ADK, ChatGPT, Cursor',
+          skills_4: '<strong>Dados / ML:</strong> Scikit-learn, Pandas, Matplotlib, Seaborn',
+          skills_5: '<strong>Testes / APIs:</strong> Cypress, Playwright, Pytest, Cucumber, Postman, Vue, Express',
+          skills_6: '<strong>DevOps / CI/CD:</strong> Jenkins, GitLab CI, Git, GitHub',
+          skills_7: '<strong>Cloud / Infra:</strong> Hugging Face, AWS, Docker',
+          skills_8: '<strong>Bancos:</strong> PostgreSQL, SQL, ORM, MongoDB, Pinecone',
+          skills_9: '<strong>Observabilidade / Gestão:</strong> Jira, Xray, TestRail, Kibana, Grafana, Datadog, BrowserStack',
+          skills_10: '<strong>Padrões:</strong> OOP, POM, DRY',
+          skills_soft_h: 'Soft skills', tag_perfil2: 'Perfil',
+          soft_1: 'Forte capacidade analítica e atenção a detalhes',
+          soft_2: 'Proatividade, organização e aprendizado rápido',
+          soft_3: 'Habilidade em compartilhar e disseminar conhecimento com o time',
+          ph_proj_title: 'Projetos de IA', ph_proj_desc: 'Links para demos e experimentos publicados.',
+          proj_chem_title: 'Chemistry Agent (LLM, RAG, Fine-Tuning)', proj_chem_link: 'quimicai.vercel.app',
+          proj_medical_title: 'Assistente médico virtual — ChatML, RAG e multimodal LM',
+          proj_medical_link: 'medical-virtual-assistant.vercel.app',
+          proj_medical_note: 'Fine-tuning ChatML, RAG e modelo de linguagem multimodal para assistência contextualizada.',
+          proj_mlga_title: 'Otimização de ML com algoritmos genéticos (diabetes)', tag_genetic: 'algoritmos genéticos',
+          proj_mlga_link: 'Notebook — diabetes_otimizado.ipynb (GitHub)',
+          proj_mlga_note: 'Busca de hiperparâmetros e otimização de modelo com abordagem evolutiva (scikit-learn).',
+          proj_hf_diab_title: 'Machine Learning — Predição de diabetes', proj_hf_diab_link: 'Hugging Face — Diabets',
+          proj_pneu_title: 'Deep Learning — Diagnóstico de pneumonia', proj_pneu_link: 'Hugging Face — Pneumonia',
+          proj_poc_title: 'POC — agente de teste para IA (LLM como validador)',
+          proj_poc_note: 'Menção: prova de conceito explorando LLM como validador em fluxos de teste assistido por IA (sem link público).',
+          footer: 'Vitor Teixeira — Portfolio'
+        },
+        en: {
+          doc_title: 'Vitor Teixeira — Portfolio',
+          lang_aria: 'Language',
+          hero_subtitle: 'AI Engineer & QA Specialist · São Paulo, SP',
+          nav_aria: 'Sections',
+          nav_sobre: 'About', nav_exp: 'Experience', nav_form: 'Education', nav_skills: 'Skills', nav_proj: 'Projects',
+          intro: 'Senior QA with strong end-to-end and API automation (Cypress, Playwright, TypeScript/JavaScript), CI/CD integration, and a shift toward AI products: LLMs, agents, RAG, and prompt engineering. Experience in international squads and fintech.',
+          ph_sobre_title: 'About', ph_sobre_desc: 'Professional focus',
+          sobre_resumo_h: 'Summary', tag_perfil: 'Profile',
+          sobre_p2: 'Solid background in software quality, test automation, and QA technical leadership, currently deepening applied AI (RAG, LangChain, fine-tuning, cloud pipelines).',
+          ph_exp_title: 'Work experience', ph_exp_desc: 'Companies, projects, and key outcomes.',
+          exp_blue_title: 'Senior QA Engineer — BlueMetrics', tag_atual: 'Current',
+          exp_blue_meta: 'Aug 2025 — Present · LobbyCRE project (US)',
+          exp_blue_1: 'QA leadership for AI products focused on real estate (Lobby AI).',
+          exp_blue_2: 'Intelligent automation with emphasis on LLMs and AI agents.',
+          exp_blue_3: 'Prompt engineering for test scenarios and validation of model response accuracy.',
+          exp_blue_4: 'E2E automation with Cypress and JavaScript.',
+          exp_enc_title: 'QA Specialist — Encora', exp_enc_meta: 'Jun 2024 — Apr 2025 · Mindbloom project (US)',
+          exp_enc_1: 'Contributed to application quality in an international project.',
+          exp_enc_2: 'E2E and API automation with JavaScript and Playwright.',
+          exp_enc_3: 'Test scenarios, bug identification, and reporting.',
+          exp_dex_title: 'Senior QA Engineer — Dexian', exp_dex_meta: 'Apr 2023 — May 2024 · Pizza Hut (US)',
+          exp_dex_1: 'QA leadership focused on performance and user experience.',
+          exp_dex_2: 'E2E and API automation with Playwright, Cypress, and TypeScript.',
+          exp_dex_3: 'Test plans, tracking, and detailed defect reporting.',
+          exp_dex_4: 'Migrated the test project to Cypress, JavaScript, and GitLab CI integration.',
+          exp_fs_title: 'Senior QA Engineer — FullstackLabs', exp_fs_meta: 'Aug 2022 — Mar 2023 · LWT Learning Without Tears (US)',
+          exp_fs_1: 'E2E and API automation scripts with Cypress and TypeScript.',
+          exp_fs_2: 'Mentoring junior QAs and test best practices.',
+          exp_sol_title: 'Software Quality Analyst — Solfacil Fintech', exp_sol_meta: 'Apr 2021 — Aug 2022 · São Paulo',
+          exp_sol_1: 'Commercial and engineering squads; full testing lifecycle.',
+          exp_sol_2: 'Plans, cases, reporting, and defect tracking.',
+          exp_sol_3: 'Mentoring junior QAs.',
+          exp_sol_4: 'Led E2E and API automation with POM, Cypress, and JavaScript.',
+          exp_acre_title: 'Software Quality Analyst — ACRELEC',
+          exp_acre_meta: 'Sep 2020 — Mar 2021 · 7 mos',
+          exp_acre_1: 'Created and executed test scenarios; identified issues and failures and reported them to development teams.',
+          exp_acre_2: 'Worked with cross-functional, multidisciplinary teams to ensure quality across the software development lifecycle.',
+          exp_acre_3: 'Developed and ran automated tests for web apps (Ruby, Capybara, Cucumber) and APIs (Pytest, HTTParty).',
+          exp_acre_4: 'Reporting with Jira and the X-Ray plugin.',
+          exp_acre_5: 'Projects: Taco Bell UK, McDonald\'s US, Acrelec Audio, POS (point of sale).',
+          exp_rgpi_title: 'Software Developer — RGPI Web', tag_contract: 'Contract',
+          exp_rgpi_meta: 'Jul 2018 — Aug 2020 · 2 yrs 2 mos · Remote',
+          exp_rgpi_1: 'Developed and maintained RESTful APIs with Node.js and Express.',
+          exp_rgpi_2: 'Data modeling and persistence with PostgreSQL and TypeORM.',
+          exp_rgpi_3: 'Technical requirements analysis and implementation of business logic.',
+          exp_rgpi_4: 'SQL queries.',
+          ph_form_title: 'Education & qualifications', ph_form_desc: 'Academic courses, extension, and certifications.',
+          form_edu_h: 'Formal education',
+          form_edu_1: '<strong>Artificial Intelligence for Developers</strong> — FIAP (Jun 2025 — Mar 2026)',
+          form_edu_4: '<strong>MBA in Software Engineering</strong> — IMPACTA (2022 — Incomplete)',
+          form_edu_2: '<strong>Systems Analysis and Development</strong> — IMPACTA (Aug 2018 — Jul 2020)',
+          form_edu_3: '<strong>Business Administration</strong> — UNIESP (Jan 2006 — Dec 2009)',
+          form_qual_h: 'Qualifications & courses',
+          form_q_1: 'Advanced RAG Techniques with LangChain — Alura', form_q_2: 'Orchestrating LLMs with LangChain — Alura',
+          form_q_3: 'LangChain: Automating Data Analysis with Agents — Alura', form_q_4: 'Llamaindex Chatbot with RAG — Alura',
+          form_q_5: 'Fine-Tuning OpenAI — Alura', form_q_6: 'AI Pipelines in Cloud: GCP, AWS and Azure — Alura',
+          form_q_7: 'Artificial and Computational Intelligence — FIAP', form_q_8: 'Node.js — Rocketseat Ignite',
+          form_q_9: 'User Experience — FIAP', form_q_10: 'Advanced Cypress — Test Automation University',
+          form_q_11: 'Automation 180 (WEB and API) — QAninja', form_q_12: 'Marketing: Creativity and Innovation — Senac',
+          form_q_13: 'Advanced English — CNA',
+          ph_skills_title: 'Skills', ph_skills_desc: 'Technical hard skills and soft skills.',
+          skills_hard_h: 'Hard skills', tag_stack: 'Stack',
+          skills_1: '<strong>Languages:</strong> Python, JavaScript, TypeScript',
+          skills_2: '<strong>AI / ML:</strong> Prompt Engineering, NLP, Fine-tuning, RAG, LlamaIndex, Ollama',
+          skills_3: '<strong>AI tools:</strong> LangChain, OpenAI, Gemini, Google ADK, ChatGPT, Cursor',
+          skills_4: '<strong>Data / ML:</strong> Scikit-learn, Pandas, Matplotlib, Seaborn',
+          skills_5: '<strong>Testing / APIs:</strong> Cypress, Playwright, Pytest, Cucumber, Postman, Vue, Express',
+          skills_6: '<strong>DevOps / CI/CD:</strong> Jenkins, GitLab CI, Git, GitHub',
+          skills_7: '<strong>Cloud / Infra:</strong> Hugging Face, AWS, Docker',
+          skills_8: '<strong>Databases:</strong> PostgreSQL, SQL, ORM, MongoDB, Pinecone',
+          skills_9: '<strong>Observability / Management:</strong> Jira, Xray, TestRail, Kibana, Grafana, Datadog, BrowserStack',
+          skills_10: '<strong>Patterns:</strong> OOP, POM, DRY',
+          skills_soft_h: 'Soft skills', tag_perfil2: 'Profile',
+          soft_1: 'Strong analytical skills and attention to detail',
+          soft_2: 'Proactivity, organization, and fast learning',
+          soft_3: 'Skilled at sharing knowledge with the team',
+          ph_proj_title: 'AI projects', ph_proj_desc: 'Links to demos and published experiments.',
+          proj_chem_title: 'Chemistry Agent (LLM, RAG, Fine-Tuning)', proj_chem_link: 'quimicai.vercel.app',
+          proj_medical_title: 'Medical virtual assistant — ChatML, RAG & multimodal LM',
+          proj_medical_link: 'medical-virtual-assistant.vercel.app',
+          proj_medical_note: 'ChatML fine-tuning, RAG, and a multimodal language model for contextual assistance.',
+          proj_mlga_title: 'ML optimization with genetic algorithms (diabetes)', tag_genetic: 'genetic algorithms',
+          proj_mlga_link: 'Notebook — diabetes_otimizado.ipynb (GitHub)',
+          proj_mlga_note: 'Hyperparameter search and model optimization with an evolutionary approach (scikit-learn).',
+          proj_hf_diab_title: 'Machine Learning — Diabetes prediction', proj_hf_diab_link: 'Hugging Face — Diabets',
+          proj_pneu_title: 'Deep Learning — Pneumonia diagnosis', proj_pneu_link: 'Hugging Face — Pneumonia',
+          proj_poc_title: 'POC — AI test agent (LLM as validator)',
+          proj_poc_note: 'Note: proof of concept exploring an LLM as a validator in AI-assisted test flows (no public link).',
+          footer: 'Vitor Teixeira — Portfolio'
+        },
+        es: {
+          doc_title: 'Vitor Teixeira — Portfolio',
+          lang_aria: 'Idioma',
+          hero_subtitle: 'AI Engineer & QA Specialist · São Paulo, SP',
+          nav_aria: 'Secciones',
+          nav_sobre: 'Sobre mí', nav_exp: 'Experiencia', nav_form: 'Formación', nav_skills: 'Skills', nav_proj: 'Proyectos',
+          intro: 'QA senior con fuerte actuación en automatización E2E y API (Cypress, Playwright, TypeScript/JavaScript), integración en CI/CD y evolución hacia productos de IA: LLMs, agentes, RAG e ingeniería de prompts. Experiencia en squads internacionales y fintech.',
+          ph_sobre_title: 'Sobre', ph_sobre_desc: 'Enfoque profesional',
+          sobre_resumo_h: 'Resumen', tag_perfil: 'Perfil',
+          sobre_p2: 'Trayectoria sólida en calidad de software, automatización de pruebas y liderazgo técnico en QA, profundizando en IA aplicada (RAG, LangChain, fine-tuning, pipelines en la nube).',
+          ph_exp_title: 'Experiencia profesional', ph_exp_desc: 'Empresas, proyectos y entregables clave.',
+          exp_blue_title: 'Senior QA Engineer — BlueMetrics', tag_atual: 'Actual',
+          exp_blue_meta: 'Ago 2025 — Presente · Proyecto LobbyCRE (EE. UU.)',
+          exp_blue_1: 'Liderazgo de QA para productos de IA orientados al mercado inmobiliario (Lobby AI).',
+          exp_blue_2: 'Automatización inteligente con foco en LLMs y agentes de IA.',
+          exp_blue_3: 'Ingeniería de prompts para escenarios de prueba y validación de la precisión de las respuestas.',
+          exp_blue_4: 'Automatización E2E con Cypress y JavaScript.',
+          exp_enc_title: 'QA Specialist — Encora', exp_enc_meta: 'Jun 2024 — Abr 2025 · Proyecto Mindbloom (EE. UU.)',
+          exp_enc_1: 'Contribución a la calidad de la aplicación en proyecto internacional.',
+          exp_enc_2: 'Automatización E2E y de API con JavaScript y Playwright.',
+          exp_enc_3: 'Escenarios de prueba, identificación y reporte de bugs.',
+          exp_dex_title: 'Senior QA Engineer — Dexian', exp_dex_meta: 'Abr 2023 — May 2024 · Pizza Hut (EE. UU.)',
+          exp_dex_1: 'Liderazgo de QA con foco en rendimiento y experiencia de usuario.',
+          exp_dex_2: 'Automatización E2E y de API con Playwright, Cypress y TypeScript.',
+          exp_dex_3: 'Planes de prueba, seguimiento y reporte detallado de defectos.',
+          exp_dex_4: 'Migración del proyecto de pruebas a Cypress, JavaScript e integración con GitLab CI.',
+          exp_fs_title: 'Senior QA Engineer — FullstackLabs', exp_fs_meta: 'Ago 2022 — Mar 2023 · LWT Learning Without Tears (EE. UU.)',
+          exp_fs_1: 'Scripts de automatización E2E y de API con Cypress y TypeScript.',
+          exp_fs_2: 'Mentoría a QAs junior y buenas prácticas de prueba.',
+          exp_sol_title: 'Analista de Calidad de Software — Solfacil Fintech', exp_sol_meta: 'Abr 2021 — Ago 2022 · São Paulo',
+          exp_sol_1: 'Squads comercial e ingeniería; ciclo completo de pruebas.',
+          exp_sol_2: 'Planes, casos, reporte y seguimiento de defectos.',
+          exp_sol_3: 'Mentoría a QAs junior.',
+          exp_sol_4: 'Liderazgo de automatización E2E y de API con POM, Cypress y JavaScript.',
+          exp_acre_title: 'Analista de Calidad de Software — ACRELEC',
+          exp_acre_meta: 'Sep 2020 — Mar 2021 · 7 meses',
+          exp_acre_1: 'Creación y ejecución de escenarios de prueba; identificación de problemas y fallos con reporte a los equipos de desarrollo.',
+          exp_acre_2: 'Trabajo con equipos multifuncionales y multidisciplinares para asegurar la calidad a lo largo del ciclo de vida del software.',
+          exp_acre_3: 'Desarrollo y ejecución de pruebas automatizadas web (Ruby, Capybara, Cucumber) y de API (Pytest, HTTParty).',
+          exp_acre_4: 'Reporte con Jira y el complemento X-Ray.',
+          exp_acre_5: 'Proyectos: Taco Bell UK, McDonald\'s US, Acrelec Audio, POS (punto de venta).',
+          exp_rgpi_title: 'Desarrollador de Software — RGPI Web', tag_contract: 'Contrato',
+          exp_rgpi_meta: 'Jul 2018 — Ago 2020 · 2 años 2 meses · Remoto',
+          exp_rgpi_1: 'Desarrollo y mantenimiento de APIs RESTful con Node.js y Express.',
+          exp_rgpi_2: 'Modelado de datos y persistencia con PostgreSQL y TypeORM.',
+          exp_rgpi_3: 'Análisis técnico de requisitos e implementación de lógica de negocio.',
+          exp_rgpi_4: 'Consultas SQL.',
+          ph_form_title: 'Formación y calificaciones', ph_form_desc: 'Cursos académicos, extensión y certificaciones.',
+          form_edu_h: 'Educación formal',
+          form_edu_1: '<strong>Artificial Intelligence for Developers</strong> — FIAP (Jun 2025 — Mar 2026)',
+          form_edu_4: '<strong>MBA en Ingeniería de Software</strong> — IMPACTA (2022 — incompleto)',
+          form_edu_2: '<strong>Análisis y Desarrollo de Sistemas</strong> — IMPACTA (Ago 2018 — Jul 2020)',
+          form_edu_3: '<strong>Administración</strong> — UNIESP (Ene 2006 — Dic 2009)',
+          form_qual_h: 'Calificaciones y cursos',
+          form_q_1: 'Advanced RAG Techniques with LangChain — Alura', form_q_2: 'Orchestrating LLMs with LangChain — Alura',
+          form_q_3: 'LangChain: Automating Data Analysis with Agents — Alura', form_q_4: 'Llamaindex Chatbot with RAG — Alura',
+          form_q_5: 'Fine-Tuning OpenAI — Alura', form_q_6: 'AI Pipelines in Cloud: GCP, AWS and Azure — Alura',
+          form_q_7: 'Artificial and Computational Intelligence — FIAP', form_q_8: 'Node.js — Rocketseat Ignite',
+          form_q_9: 'User Experience — FIAP', form_q_10: 'Advanced Cypress — Test Automation University',
+          form_q_11: 'Automation 180 (WEB and API) — QAninja', form_q_12: 'Marketing: Creativity and Innovation — Senac',
+          form_q_13: 'Advanced English — CNA',
+          ph_skills_title: 'Competencias', ph_skills_desc: 'Hard skills técnicas y soft skills.',
+          skills_hard_h: 'Hard skills', tag_stack: 'Stack',
+          skills_1: '<strong>Lenguajes:</strong> Python, JavaScript, TypeScript',
+          skills_2: '<strong>IA / ML:</strong> Prompt Engineering, NLP, Fine-tuning, RAG, LlamaIndex, Ollama',
+          skills_3: '<strong>Herramientas de IA:</strong> LangChain, OpenAI, Gemini, Google ADK, ChatGPT, Cursor',
+          skills_4: '<strong>Datos / ML:</strong> Scikit-learn, Pandas, Matplotlib, Seaborn',
+          skills_5: '<strong>Pruebas / APIs:</strong> Cypress, Playwright, Pytest, Cucumber, Postman, Vue, Express',
+          skills_6: '<strong>DevOps / CI/CD:</strong> Jenkins, GitLab CI, Git, GitHub',
+          skills_7: '<strong>Cloud / Infra:</strong> Hugging Face, AWS, Docker',
+          skills_8: '<strong>Bases de datos:</strong> PostgreSQL, SQL, ORM, MongoDB, Pinecone',
+          skills_9: '<strong>Observabilidad / Gestión:</strong> Jira, Xray, TestRail, Kibana, Grafana, Datadog, BrowserStack',
+          skills_10: '<strong>Patrones:</strong> OOP, POM, DRY',
+          skills_soft_h: 'Soft skills', tag_perfil2: 'Perfil',
+          soft_1: 'Fuerte capacidad analítica y atención al detalle',
+          soft_2: 'Proactividad, organización y aprendizaje rápido',
+          soft_3: 'Habilidad para compartir y difundir conocimiento con el equipo',
+          ph_proj_title: 'Proyectos de IA', ph_proj_desc: 'Enlaces a demos y experimentos publicados.',
+          proj_chem_title: 'Chemistry Agent (LLM, RAG, Fine-Tuning)', proj_chem_link: 'quimicai.vercel.app',
+          proj_medical_title: 'Asistente médico virtual — ChatML, RAG y multimodal LM',
+          proj_medical_link: 'medical-virtual-assistant.vercel.app',
+          proj_medical_note: 'Fine-tuning ChatML, RAG y modelo de lenguaje multimodal para asistencia contextualizada.',
+          proj_mlga_title: 'Optimización de ML con algoritmos genéticos (diabetes)', tag_genetic: 'algoritmos genéticos',
+          proj_mlga_link: 'Notebook — diabetes_otimizado.ipynb (GitHub)',
+          proj_mlga_note: 'Búsqueda de hiperparámetros y optimización del modelo con enfoque evolutivo (scikit-learn).',
+          proj_hf_diab_title: 'Machine Learning — Predicción de diabetes', proj_hf_diab_link: 'Hugging Face — Diabets',
+          proj_pneu_title: 'Deep Learning — Diagnóstico de neumonía', proj_pneu_link: 'Hugging Face — Pneumonia',
+          proj_poc_title: 'POC — agente de prueba para IA (LLM como validador)',
+          proj_poc_note: 'Mención: prueba de concepto que explora el LLM como validador en flujos de prueba asistidos por IA (sin enlace público).',
+          footer: 'Vitor Teixeira — Portfolio'
+        }
+      };
+
+      function applyLang(lang) {
+        var t = STRINGS[lang];
+        if (!t) return;
+        document.documentElement.lang = lang === 'pt' ? 'pt-BR' : lang;
+        document.title = t.doc_title;
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n');
+          if (t[key] !== undefined) el.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function(el) {
+          var key = el.getAttribute('data-i18n-html');
+          if (t[key] !== undefined) el.innerHTML = t[key];
+        });
+        var nav = document.querySelector('nav.tabs');
+        if (nav) {
+          var navAriaKey = nav.getAttribute('data-i18n-aria');
+          if (navAriaKey && t[navAriaKey]) nav.setAttribute('aria-label', t[navAriaKey]);
+        }
+        var langGroup = document.querySelector('[data-i18n-aria-group]');
+        if (langGroup) {
+          var gKey = langGroup.getAttribute('data-i18n-aria-group');
+          if (gKey && t[gKey]) langGroup.setAttribute('aria-label', t[gKey]);
+        }
+        document.querySelectorAll('.lang-switch button').forEach(function(b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+        });
+        try { localStorage.setItem('portfolioLang', lang); } catch (e) {}
+      }
+
+      document.querySelectorAll('.lang-switch button').forEach(function(b) {
+        b.addEventListener('click', function() {
+          applyLang(this.getAttribute('data-lang'));
+        });
+      });
+
+      var initialLang = 'pt';
+      try { initialLang = localStorage.getItem('portfolioLang') || 'pt'; } catch (e) {}
+      if (initialLang !== 'pt') applyLang(initialLang);
+
+      document.querySelectorAll('.phase-header').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var phase = this.closest('.phase');
+          var isOpen = phase.classList.toggle('open');
+          phase.querySelector('.phase-body').style.display = isOpen ? 'block' : 'none';
+          this.setAttribute('aria-expanded', isOpen);
+        });
+      });
+
+      document.querySelectorAll('.phase-item-header').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          this.closest('.phase-item').classList.toggle('open');
+        });
+      });
+
+      document.querySelectorAll('.tabs a').forEach(function(a) {
+        a.addEventListener('click', function(e) {
+          var href = this.getAttribute('href');
+          if (href.startsWith('#')) {
+            e.preventDefault();
+            var id = href.slice(1);
+            var el = document.getElementById(id);
+            if (el) {
+              el.classList.add('open');
+              el.querySelector('.phase-body').style.display = 'block';
+              el.querySelector('.phase-header').setAttribute('aria-expanded', 'true');
+              document.querySelectorAll('.phase').forEach(function(p) {
+                if (p.id !== id) {
+                  p.classList.remove('open');
+                  p.querySelector('.phase-body').style.display = 'none';
+                  p.querySelector('.phase-header').setAttribute('aria-expanded', 'false');
+                }
+              });
+              el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            document.querySelectorAll('.tabs a').forEach(function(t) { t.classList.remove('active'); });
+            this.classList.add('active');
+          }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
