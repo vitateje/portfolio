@@ -341,6 +341,92 @@
       margin: 0 0 0.5rem;
     }
 
+    /* Timeline styles for AI Journey */
+    .timeline {
+      position: relative;
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 11px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .timeline-item:last-child {
+      margin-bottom: 0;
+    }
+    .timeline-icon {
+      position: absolute;
+      left: -2rem;
+      top: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+    .timeline-icon svg {
+      width: 14px;
+      height: 14px;
+      color: var(--accent);
+    }
+    .timeline-content {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+    }
+    .timeline-content h3 {
+      font-size: 1rem;
+      margin: 0 0 0.5rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .timeline-logos {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .timeline-logo-item {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--surface3);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .timeline-logo-item svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+    .timeline-date {
+      display: inline-block;
+      font-size: 0.75rem;
+      background: var(--surface3);
+      padding: 0.2em 0.6em;
+      border-radius: 12px;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
     .footer-credits {
       position: fixed;
       bottom: 1rem;
@@ -371,6 +457,102 @@
           <button type="button" data-lang="es" aria-pressed="false" title="Español">ES</button>
           <span role="separator" aria-hidden="true">|</span>
           <button type="button" data-lang="en" aria-pressed="false" title="English">EN</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" id="ai-journey" data-phase="6">
+      <div class="phase-header" aria-expanded="false">
+        <span class="phase-dot"></span>
+        <div class="phase-title-wrap">
+          <h2 class="phase-title" data-i18n="ph_aij_title">AI Journey</h2>
+          <p class="phase-desc" data-i18n="ph_aij_desc">Exploração, cursos e evolução em Inteligência Artificial.</p>
+        </div>
+        <svg class="phase-toggle" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+      </div>
+      <div class="phase-body">
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-date" data-i18n="aij_date">Feb 2025</span>
+              <h3 data-i18n="aij_1_title">1 - Mindbloom: AI exploration sprint</h3>
+              <p class="phase-desc" data-i18n="aij_1_desc">Exploração de ferramentas para acelerar o desenvolvimento (Stock CRUD, personal financial, FE e BE).</p>
+              <div class="timeline-logos">
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22.28 11.23c-.22-.38-.45-.75-.68-1.13a10.02 10.02 0 0 0-4.02-4.14A9.95 9.95 0 0 0 12 4c-1.8 0-3.53.5-5.06 1.4-1.53.9-2.78 2.18-3.64 3.7C2.45 10.64 2 12.35 2 14.12c0 1.77.45 3.48 1.3 5.02.85 1.54 2.1 2.83 3.63 3.73 1.52.9 3.26 1.4 5.07 1.4a9.95 9.95 0 0 0 5.6-1.72 10.02 10.02 0 0 0 4.02-4.14c.23-.38.46-.75.68-1.13.24-.38.24-.83 0-1.2l-3.32-5.75c-.24-.38-.64-.6-1.1-.6h-6.64c-.45 0-.85.22-1.1.6l-2 3.46c-.24.38-.24.83 0 1.2l3.32 5.75c.24.38.64.6 1.1.6h2c.55 0 1-.45 1-1s-.45-1-1-1h-1.4l-2.73-4.75 1.4-2.42h5.45l2.73 4.75-2.73 4.75H12c-1.4 0-2.74-.4-3.92-1.08a8 8 0 0 1-2.83-2.9C4.55 16.5 4 15.17 4 13.78c0-1.4.54-2.73 1.25-3.93a8 8 0 0 1 2.82-2.9A7.9 7.9 0 0 1 12 5.86c1.38 0 2.73.38 3.92 1.08a8 8 0 0 1 2.83 2.9l1.4-2.43c-.47-.8-1.03-1.55-1.68-2.2z"/></svg>
+                  ChatGPT
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /><path d="M12 2a10 10 0 0 0-9.95 9h19.9A10 10 0 0 0 12 2z" fill="var(--bg)"/></svg>
+                  Code Rabbit
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2L2 11l9 9 9-9-9-9z"/></svg>
+                  Cursor
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-date" data-i18n="aij_date">Feb 2025</span>
+              <h3 data-i18n="aij_2_title">2 - Google Books</h3>
+              <p class="phase-desc" data-i18n="aij_2_desc">Aprofundamento em Prompt Engineering, AI Agents e Prompt Guide 101 Gemini.</p>
+              <div class="timeline-logos">
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+                  Google
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5a9.5 9.5 0 1 0 0 19 9.5 9.5 0 0 0 0-19zm0 17.5a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm-1-12h2v6h-2zM11 15h2v2h-2z"/></svg>
+                  Prompt Eng.
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L3 7l9 5 9-5-9-5zm0 7l-9 5 9 5 9-5-9-5zm0 7l-9 5 9 5 9-5-9-5z"/></svg>
+                  Gemini
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+            </div>
+            <div class="timeline-content">
+              <span class="timeline-date" data-i18n="aij_date">Feb 2025</span>
+              <h3 data-i18n="aij_3_title">3 - Specific Courses</h3>
+              <ul class="phase-desc" style="padding-left: 1.25rem; margin-top: 0.5rem; margin-bottom: 0;">
+                <li data-i18n="aij_3_li1">Artificial and Computational Intelligence - FIAP</li>
+                <li data-i18n="aij_3_li2">Gemini - Imersão Alura</li>
+                <li data-i18n="aij_3_li3">Alura courses: RAG, Llamaindex, Cloud Vertex, Orchestration, RAG Advanced</li>
+                <li data-i18n="aij_3_li4">Startup School: Google Agentic AI</li>
+              </ul>
+              <div class="timeline-logos">
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z"/></svg>
+                  FIAP
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+                  Alura
+                </div>
+                <div class="timeline-logo-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  Startup School
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -820,6 +1002,18 @@
           proj_pneu_title: 'Deep Learning — Diagnóstico de pneumonia', proj_pneu_link: 'Hugging Face — Pneumonia',
           proj_poc_title: 'POC — agente de teste para IA (LLM como validador)',
           proj_poc_note: 'Menção: prova de conceito explorando LLM como validador em fluxos de teste assistido por IA (sem link público).',
+          ph_aij_title: 'AI Journey',
+          ph_aij_desc: 'Exploração, cursos e evolução em Inteligência Artificial.',
+          aij_date: 'Fev 2025',
+          aij_1_title: '1 - Mindbloom: AI exploration sprint',
+          aij_1_desc: 'Criação de funcionalidades gerais (Stock CRUD, finanças pessoais, FE e BE).',
+          aij_2_title: '2 - Google Books',
+          aij_2_desc: 'Aprofundamento em Prompt Engineering, AI Agents e Prompt Guide 101 Gemini.',
+          aij_3_title: '3 - Cursos Específicos',
+          aij_3_li1: 'Inteligência Artificial e Computacional - FIAP',
+          aij_3_li2: 'Gemini - Imersão Alura',
+          aij_3_li3: 'Cursos Alura: RAG - Llamaindex - Cloud Vertex - Orchestration - RAG Advanced',
+          aij_3_li4: 'Startup School: Google Agentic AI',
           footer: 'Vitor Teixeira — Portfolio'
         },
         en: {
@@ -911,6 +1105,18 @@
           proj_pneu_title: 'Deep Learning — Pneumonia diagnosis', proj_pneu_link: 'Hugging Face — Pneumonia',
           proj_poc_title: 'POC — AI test agent (LLM as validator)',
           proj_poc_note: 'Note: proof of concept exploring an LLM as a validator in AI-assisted test flows (no public link).',
+          ph_aij_title: 'AI Journey',
+          ph_aij_desc: 'Exploration, courses, and evolution in Artificial Intelligence.',
+          aij_date: 'Feb 2025',
+          aij_1_title: '1 - Mindbloom: AI exploration sprint',
+          aij_1_desc: 'General features creation (Stock CRUD, personal financial, FE and BE).',
+          aij_2_title: '2 - Google Books',
+          aij_2_desc: 'Deep dive into prompt engineering, AI agents, and prompt guide 101 Gemini.',
+          aij_3_title: '3 - Specific Courses',
+          aij_3_li1: 'Artificial and Computational Intelligence - FIAP',
+          aij_3_li2: 'Gemini - Imersão Alura',
+          aij_3_li3: 'Alura courses: RAG - Llamaindex - Cloud Vertex - Orchestration - RAG Advanced',
+          aij_3_li4: 'Startup School: Google Agentic AI',
           footer: 'Vitor Teixeira — Portfolio'
         },
         es: {
@@ -1002,6 +1208,18 @@
           proj_pneu_title: 'Deep Learning — Diagnóstico de neumonía', proj_pneu_link: 'Hugging Face — Pneumonia',
           proj_poc_title: 'POC — agente de prueba para IA (LLM como validador)',
           proj_poc_note: 'Mención: prueba de concepto que explora el LLM como validador en flujos de prueba asistidos por IA (sin enlace público).',
+          ph_aij_title: 'AI Journey',
+          ph_aij_desc: 'Exploración, cursos y evolución en Inteligencia Artificial.',
+          aij_date: 'Feb 2025',
+          aij_1_title: '1 - Mindbloom: AI exploration sprint',
+          aij_1_desc: 'Creación de funcionalidades generales (Stock CRUD, finanzas personales, FE y BE).',
+          aij_2_title: '2 - Google Books',
+          aij_2_desc: 'Profundización en prompt engineering, agentes de IA y prompt guide 101 Gemini.',
+          aij_3_title: '3 - Cursos Específicos',
+          aij_3_li1: 'Inteligencia Artificial y Computacional - FIAP',
+          aij_3_li2: 'Gemini - Imersão Alura',
+          aij_3_li3: 'Cursos Alura: RAG - Llamaindex - Cloud Vertex - Orchestration - RAG Advanced',
+          aij_3_li4: 'Startup School: Google Agentic AI',
           footer: 'Vitor Teixeira — Portfolio'
         }
       };
